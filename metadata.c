@@ -139,8 +139,20 @@ check_for_captions(const char *path, int64_t detailID)
 		}
 	}
 
+	// TODO: make language detection more flexible.
+	// Does DLNA support multiple languages at the same time?
 	strcpy(p, ".srt");
 	ret = access(file, R_OK);
+	if (ret != 0)
+	{
+		strcpy(p, ".en.srt");
+		ret = access(file, R_OK);
+	}
+	if (ret != 0)
+	{
+		strcpy(p, ".de.srt");
+		ret = access(file, R_OK);
+	}
 	if (ret != 0)
 	{
 		strcpy(p, ".smi");
@@ -149,6 +161,8 @@ check_for_captions(const char *path, int64_t detailID)
 
 	if (ret == 0)
 	{
+		DPRINTF(E_DEBUG, L_INOTIFY, "Found captions: %s\n", file);
+
 		sql_exec(db, "INSERT OR REPLACE into CAPTIONS"
 		             " (ID, PATH) "
 		             "VALUES"
@@ -184,7 +198,7 @@ parse_nfo(const char *path, metadata_t *m)
 	}
 	nread = fread(buf, 1, file.st_size, nfo);
 	fclose(nfo);
-	
+
 	ParseNameValue(buf, nread, &xml, 0);
 
 	//printf("\ttype: %s\n", GetValueFromNameValueList(&xml, "rootElement"));
