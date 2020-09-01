@@ -953,6 +953,9 @@ init(int argc, char **argv)
 			SETFLAG(SYSTEMD_MASK);
 			break;
 #endif
+		case 'F':
+			SETFLAG(NODAEMON_MASK);
+			break;
 		case 'V':
 			printf("Version " MINIDLNA_VERSION "\n");
 			exit(0);
@@ -987,6 +990,7 @@ init(int argc, char **argv)
 #ifdef __linux__
 			"\t-S changes behaviour for systemd\n"
 #endif
+			"\t-F do not daemonize\n"
 			"\t-V print the version number\n",
 			argv[0], pidfilename);
 		return 1;
@@ -1009,6 +1013,11 @@ init(int argc, char **argv)
 		log_path[0] = '\0';
 	}
 	else if (GETFLAG(SYSTEMD_MASK))
+	{
+		pid = getpid();
+		log_path[0] = '\0';
+	}
+	else if (GETFLAG(NODAEMON_MASK))
 	{
 		pid = getpid();
 		log_path[0] = '\0';
