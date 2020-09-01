@@ -1,6 +1,7 @@
 1.3.0 - Released xx-xxx-xxxx
 --------------------------------
-- Support subtitles with language code in filename
+- Support subtitles with language code in filename.
+- CLI flag to keep process in foreground while still logging timestamps.
 - Many more things will be added here.
 
 1.2.1 - Released 24-Aug-2017

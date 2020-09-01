@@ -2,6 +2,14 @@
 
 (Yet another) fork of https://sourceforge.net/projects/minidlna/.
 
+
+## Features
+
+* Support subtitles with language code in filename.
+* CLI flag to keep process in foreground while still logging timestamps.
+* Many more things will be added here.
+
+
 ## Compilation
 
 ```bash
