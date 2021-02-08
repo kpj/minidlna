@@ -44,7 +44,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <net/if.h>
-#include <poll.h>
+#include <sys/poll.h>
 #include <netdb.h>
 
 #include "event.h"
