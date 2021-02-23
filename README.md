@@ -20,6 +20,19 @@ $ make
 $ make install
 ```
 
+## Developer notes
+
+The original [repository](https://sourceforge.net/projects/minidlna/) is added as an upstream remote.
+New features can be merged in like this:
+
+```bash
+# git remote add upstream git://git.code.sf.net/p/minidlna/git
+$ git fetch upstream
+
+$ git branch -a
+$ git merge remotes/upstream/master
+```
+
 ## Old README
 
 The old readme can be found in `README`.
